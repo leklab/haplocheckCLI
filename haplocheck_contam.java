@@ -45,12 +45,15 @@ public class haplocheck_contam{
 
 		if (vcf_list.size() > 1){
         	System.out.println("Only one VCF file");
+        	System.out.println(vcf_list);
+
 			return 1;
 		}
 
 
 		try{
 			File file = vcf_list.iterator().next();
+        	System.out.println(vcf_list);
 
 
 			VariantSplitter splitter = new VariantSplitter();
@@ -79,6 +82,7 @@ public class haplocheck_contam{
 
 
 		}catch(Exception e){
+			System.out.println(e);
 			return 1;
 		}
 
@@ -133,7 +137,7 @@ public class haplocheck_contam{
 
 
         haplocheck_contam pileup = new haplocheck_contam(args[0]);
-        //pileup.run();
+        pileup.run();
 
     }
 
