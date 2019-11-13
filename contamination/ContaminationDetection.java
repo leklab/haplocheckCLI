@@ -57,6 +57,7 @@ public class ContaminationDetection {
 		try {
 
 			for (int i = 0; i < haplogrepSamples.size(); i += 2) {
+			//for (int i = 0; i < 50; i += 2) {
 
 				int distance = 0;
 				Status status;
@@ -74,13 +75,26 @@ public class ContaminationDetection {
 				double hgQualityMajor = haplogrepMajor.getTopResult().getDistance();
 				double hgQualityMinor = haplogrepMinor.getTopResult().getDistance();
 
+                String sample_id1 = haplogrepMajor.getSampleID();
+                String sample_id2 = haplogrepMajor.getSampleID().split("_maj")[0];
+                //System.out.println("At this sample " + sample_id1 + " after splitting "+ sample_id2);
+
 				Sample mutserveSample = mutationSamples.get(contamination.getId());
 
 				int sampleHomoplasmies = mutserveSample.getAmountHomoplasmies();
 				int sampleHeteroplasmies = mutserveSample.getAmountHeteroplasmies();
+                
+                //String sample_id_at = contamination.getId();
+                //System.out.println("At this sample " + sample_id_at);
 
-				int meanCoverageSample = (int) mutserveSample.getSumCoverage() / mutserveSample.getAmountVariants();
+		        int meanCoverageSample;
 
+                if(mutserveSample.getAmountVariants() > 0){ 
+				    meanCoverageSample = (int) mutserveSample.getSumCoverage() / mutserveSample.getAmountVariants();
+                }
+                else{
+				    meanCoverageSample = -1;
+                }
 				contamination.setHgMajor(haplogrepMajor.getTopResult().getHaplogroup().toString());
 				contamination.setHgMinor(haplogrepMinor.getTopResult().getHaplogroup().toString());
 
