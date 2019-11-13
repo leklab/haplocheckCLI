@@ -7,5 +7,6 @@ jar cvfe haplocheckCLI.jar haplocheck_contam *
 java -jar haplocheckCLI.jar directory_with_vcf
 
 **TO DO**  
-Take command line options
+Switch back from VL to AF  
+Get rid of those annoying double quotes in output  
 Other cool stuff
