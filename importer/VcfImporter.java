@@ -189,9 +189,11 @@ public class VcfImporter {
 
 				} else if (genotype.getType() == GenotypeType.HET) {
 
-					if (genotype.hasAnyAttribute("VL")) {
+					//if (genotype.hasAnyAttribute("VL")) {
+					if (genotype.hasAnyAttribute("AF")) {
 
-						String afTag = (String) vc.getGenotype(sampleVcf).getAnyAttribute("VL");
+						//String afTag = (String) vc.getGenotype(sampleVcf).getAnyAttribute("VL");
+						String afTag = (String) vc.getGenotype(sampleVcf).getAnyAttribute("AF");
 						double hetFrequency;
 						double hetFrequencySecond;
 
