@@ -255,14 +255,42 @@ public class VcfImporter {
 						Variant variant = new Variant();
 						int pos = vc.getStart();
 						variant.setPos(pos);
-						variant.setRef(reference.charAt(0));
-						variant.setVariantBase(var);
-						variant.setLevel(hetFrequency);
-						variant.setMajor(major);
-						variant.setMajorLevel(majorLevel);
-						variant.setMinor(minor);
-						variant.setMinorLevel(minorLevel);
-						variant.setType(2);
+					    variant.setRef(reference.charAt(0));
+
+                        if(hetFrequency > 0.95){
+						    variant.setVariantBase(var);
+						    //variant.setLevel(hetFrequency);
+						    //variant.setMajor(major);
+						    //variant.setMajorLevel(majorLevel);
+						    //variant.setMinor(minor);
+						    //variant.setMinorLevel(minorLevel);
+
+                            // set to homozygous variant
+						    variant.setType(1);
+                        }
+                        /*
+                        else if(hetFrequency < 0.05){
+					        variant.setRef(reference.charAt(0));
+						    variant.setVariantBase(var);
+						    //variant.setLevel(hetFrequency);
+						    //variant.setMajor(major);
+						    //variant.setMajorLevel(majorLevel);
+						    //variant.setMinor(minor);
+						    //variant.setMinorLevel(minorLevel);
+
+                            // set to homozygous variant
+						    variant.setType(1);
+                        }
+                        */
+                        else{
+						    variant.setVariantBase(var);
+						    variant.setLevel(hetFrequency);
+						    variant.setMajor(major);
+						    variant.setMajorLevel(majorLevel);
+						    variant.setMinor(minor);
+						    variant.setMinorLevel(minorLevel);
+						    variant.setType(2);
+                        }
 
 						if (genotype.hasAnyAttribute("DP")) {
 							int coverage = (int) vc.getGenotype(sampleVcf).getAnyAttribute("DP");
