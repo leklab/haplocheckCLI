@@ -257,7 +257,7 @@ public class VcfImporter {
 						variant.setPos(pos);
 					    variant.setRef(reference.charAt(0));
 
-                        if(hetFrequency > 0.95){
+                        if(hetFrequency >= 0.95){
 						    variant.setVariantBase(var);
 						    //variant.setLevel(hetFrequency);
 						    //variant.setMajor(major);
